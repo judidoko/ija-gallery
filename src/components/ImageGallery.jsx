@@ -1,4 +1,3 @@
-import images from "../data";
 import { DndContext, closestCenter } from "@dnd-kit/core";
 
 import {
@@ -35,7 +34,7 @@ const ImageGallery = ({ loading, data, setData }) => {
         </h1>
       )}
       <div className="grid md:grid-cols-4 justify-center gap-4 m-10">
-        <SortableContext items={images} strategy={rectSwappingStrategy}>
+        <SortableContext items={data} strategy={rectSwappingStrategy}>
           {data.map((item, index) => (
             <ImageCard
               key={index}
