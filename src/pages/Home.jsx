@@ -40,12 +40,9 @@ const Home = () => {
     }
   };
 
-  // const onClick = (e) => {
-  //   e.preventDefault();
-  //   if (e.keyCode === 13) {
-  //     getPhotos();
-  //   }
-  // };
+  const handleSearch = () => {
+    getPhotos(query);
+  };
 
   return (
     <div>
@@ -53,8 +50,14 @@ const Home = () => {
         onKeyDownHandler={onKeyDownHandler}
         setQuery={setQuery}
         query={query}
+        handleSearch={handleSearch}
       />
-      <ImageGallery loading={loading} data={data} setData={setData} />
+      <ImageGallery
+        loading={loading}
+        data={data}
+        setData={setData}
+        error={error}
+      />
       <Footer />
     </div>
   );

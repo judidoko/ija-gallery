@@ -6,17 +6,13 @@ import {
   rectSwappingStrategy,
 } from "@dnd-kit/sortable";
 import ImageCard from "./ImageCard";
-// import { useState } from "react";
 
 const ImageGallery = ({ loading, data, setData }) => {
-  // const [images, setImages] = useState(data);
-
   // Dragged End event
   function handleDragEnd(event) {
     const { active, over } = event;
     if (active.id !== over.id) {
       setData((items) => {
-        console.log(items);
         const activeIndex = items.findIndex((items) => items.id === active.id);
         const overIndex = items.findIndex((items) => items.id === over.id);
         return arrayMove(items, activeIndex, overIndex);
@@ -34,7 +30,11 @@ const ImageGallery = ({ loading, data, setData }) => {
         </h1>
       )}
       <div className="grid md:grid-cols-4 justify-center gap-4 m-10">
-        <SortableContext items={data} strategy={rectSwappingStrategy}>
+        <SortableContext
+          items={data}
+          strategy={rectSwappingStrategy}
+          reorderItems={arrayMove}
+        >
           {data.map((item, index) => (
             <ImageCard
               key={index}
