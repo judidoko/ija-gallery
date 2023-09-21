@@ -1,0 +1,100 @@
+/* eslint-disable no-undef */
+import Navbar from "./../components/Navbar";
+import ImageGallery from "./../components/ImageGallery";
+import Footer from "../components/Footer";
+import { useEffect, useState } from "react";
+
+const Home = () => {
+  const [query, setQuery] = useState("dog");
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  const getPhotos = async () => {
+    setLoading(true);
+    await fetch(`https://api.pexels.com/v1/search?query=${query}`, {
+      headers: {
+        Authorization: import.meta.env.VITE_REACT_APP_API_KEY,
+      },
+    })
+      .then((resp) => {
+        return resp.json();
+      })
+      .then((data) => {
+        setLoading(false);
+        setData(data.photos);
+      })
+      .catch((error) => {
+        console.log(error);
+        setError("An error has occured. Please try again");
+      });
+  };
+
+  useEffect(() => {
+    getPhotos();
+  }, []);
+
+  const onKeyDownHandler = (e) => {
+    if (e.keyCode === 13) {
+      getPhotos();
+    }
+  };
+
+  // const onClick = (e) => {
+  //   e.preventDefault();
+  //   if (e.keyCode === 13) {
+  //     getPhotos();
+  //   }
+  // };
+
+  return (
+    <div>
+      <Navbar
+        onKeyDownHandler={onKeyDownHandler}
+        setQuery={setQuery}
+        query={query}
+      />
+      <ImageGallery loading={loading} data={data} setData={setData} />
+      <Footer />
+    </div>
+  );
+};
+
+export default Home;
+
+// const getPhotos = async () => {
+//   setLoading(true);
+//   await fetch(`https://api.pexels.com/v1/search?query=${query}`, {
+//     headers: {
+//       Authorization: API_KEY,
+//     },
+//   })
+//     .then((resp) => {
+//       return resp.json();
+//     })
+//     .then((data) => {
+//       setLoading(false);
+//       setData(data.photos);
+//     }).catch( (err) => {
+//       console.log(err)
+//       setErrMsg("An error has occured. Please try again later")
+//   });
+// };
+
+// useEffect(() => {
+//   getPhotos();
+// }, []);
+
+// const onKeyDownHandler = (e) => {
+//   if (e.keyCode === 13) {
+//     getPhotos();
+//   }
+// };
+
+// const value = {
+//   data,
+//   loading,
+//   error,
+//   searchImage,
+//   setSearchImage,
+// };
