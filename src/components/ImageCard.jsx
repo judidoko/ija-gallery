@@ -18,7 +18,7 @@ const ImageCard = ({ item }) => {
   };
   return (
     <div
-      className="card h-100 shadow"
+      className="card h-100 shadow touch-none"
       ref={setNodeRef}
       style={style}
       {...attributes}

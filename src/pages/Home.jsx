@@ -18,6 +18,7 @@ const Home = () => {
       },
     })
       .then((resp) => {
+        if (!resp.ok) throw new Error("Some went wrong");
         return resp.json();
       })
       .then((data) => {

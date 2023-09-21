@@ -7,7 +7,7 @@ import {
 } from "@dnd-kit/sortable";
 import ImageCard from "./ImageCard";
 
-const ImageGallery = ({ loading, data, setData }) => {
+const ImageGallery = ({ loading, data, setData, error }) => {
   // Dragged End event
   function handleDragEnd(event) {
     const { active, over } = event;
@@ -29,6 +29,7 @@ const ImageGallery = ({ loading, data, setData }) => {
           <span className="loading loading-ring loading-lg"></span>
         </h1>
       )}
+      {error ? <p>{error}</p> : null}
       <div className="grid md:grid-cols-4 justify-center gap-4 m-10">
         <SortableContext
           items={data}
