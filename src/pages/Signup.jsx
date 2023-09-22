@@ -17,7 +17,7 @@ const Signup = () => {
       await createUser(email, password);
       navigate("/");
     } catch (e) {
-      setError(e.message);
+      setError("Something went wrong try again");
       console.log(e.message);
     }
   };
@@ -31,6 +31,7 @@ const Signup = () => {
               Signup to gain access and explore amazing images
             </h6>
           </div>
+          {error ? <p className="text-center">{error}</p> : null}
           <form onSubmit={handleSubmit}>
             <div className="card w-[30rem] max-w-sm shadow-2xl bg-base-100">
               <div className="card-body">

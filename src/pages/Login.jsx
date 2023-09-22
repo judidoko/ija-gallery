@@ -16,7 +16,7 @@ const Login = () => {
       await signIn(email, password);
       navigate("/");
     } catch (e) {
-      setError(e.message);
+      setError("Wrong email or password");
       console.log(e.message);
     }
   };
@@ -28,6 +28,7 @@ const Login = () => {
             <h1 className="text-5xl font-bold">IJA IMAGES📷</h1>
             <h6 className="py-6">Login to explore our amazing images</h6>
           </div>
+          {error ? <p className="text-center">{error}</p> : null}
           <form onSubmit={handleSubmit}>
             <div className="card w-[30rem] max-w-sm shadow-2xl bg-base-100">
               <div className="card-body">

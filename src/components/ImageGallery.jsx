@@ -29,7 +29,7 @@ const ImageGallery = ({ loading, data, setData, error }) => {
           <span className="loading loading-ring loading-lg"></span>
         </h1>
       )}
-      {error ? <p>{error}</p> : null}
+      {error ? <p className="text center">{error}</p> : null}
       <div className="grid md:grid-cols-4 justify-center gap-4 m-10">
         <SortableContext
           items={data}

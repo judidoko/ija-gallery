@@ -26,7 +26,6 @@ const Home = () => {
         setData(data.photos);
       })
       .catch((error) => {
-        console.log(error);
         setError("An error has occured. Please try again");
       });
   };
@@ -53,6 +52,7 @@ const Home = () => {
         query={query}
         handleSearch={handleSearch}
       />
+      {error ? <p>{error}</p> : null}
       <ImageGallery
         loading={loading}
         data={data}
